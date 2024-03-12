@@ -1,0 +1,1 @@
+docker build -t array_pdf .

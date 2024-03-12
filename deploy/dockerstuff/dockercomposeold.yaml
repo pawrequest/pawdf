@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  array_pdf_service:
+    build:
+      context: ../..
+      dockerfile: dockerfile
+    volumes:
+      - ./src:/code/src
+

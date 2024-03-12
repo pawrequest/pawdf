@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  array_pdf_service:
+    build:
+      context: ../..
+      dockerfile: dockerfile
+    volumes:
+    - ./../src:/code/src
+    - ./../pyproject.toml:/code/pyproject.toml
+    - "R:/Parcelforce Labels:/data"
+
+    environment:
+      - INPUT_FILE_PATH
+#      - INPUT_FILE_PATH=/data/shiplabel.pdf
+
+
+
+  cups:
+    image: olbat/cupsd
+    ports:
+      - "631:631"
+    environment:
+      CUPS_USER_ADMIN: admin
+      CUPS_USER_PASSWORD: admin
+    volumes:
+      - cups-config:/etc/cups
+      - cups-logs:/var/log/cups
+      - cups-spool:/var/spool/cups
+      - cups-cache:/var/cache/cups
+
+volumes:
+  cups-config:
+  cups-logs:
+  cups-spool:
+  cups-cache:

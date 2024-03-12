@@ -1,0 +1,5 @@
+FROM python:3.12
+WORKDIR /code
+RUN pip install --no-cache-dir --upgrade pip && pip install -e .
+
+CMD ["print_array"]
