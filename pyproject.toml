@@ -1,9 +1,9 @@
 [project]
-name = "pdf_tools"
+name = "pawdf"
 version = "0.1.0"
-description = "Add your description here"
+description = "pdf tools"
 authors = [
-    { name = "Paul-Sees-Solutions", email = "79617825+Paul-Sees-Solutions@users.noreply.github.com" }
+    { name = "PawRequest", email = "pawdf+pawrequest@users.noreply.github.com" }
 ]
 readme = "README.md"
 requires-python = ">= 3.12"
@@ -27,3 +27,6 @@ allow-direct-references = true
 add-menu = "pdf_tools.array_pdf.array_cm:add_menu"
 remove-menu = "pdf_tools.array_pdf.array_cm:remove_menu"
 print-array = "pdf_tools.array_pdf:main"
+
+[tool.ruff]
+line-length = 120
