@@ -1,2 +1,2 @@
-from array_pdf import add_menu
+from .array_cm import add_menu
 add_menu()

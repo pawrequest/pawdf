@@ -9,9 +9,8 @@ readme = "README.md"
 requires-python = ">= 3.12"
 dependencies = [
     'pypdf',
+    'context-menu',
 ]
-[project.optional-dependencies]
-cmenu = ["context-menu"]
 
 [build-system]
 requires = ["hatchling"]
@@ -24,9 +23,9 @@ allow-direct-references = true
 #packages = ["array_pdf"]
 
 [project.scripts]
-add-menu = "pdf_tools.array_pdf.array_cm:add_menu"
-remove-menu = "pdf_tools.array_pdf.array_cm:remove_menu"
-print-array = "pdf_tools.array_pdf:main"
+add-menu = "pawdf.array_pdf:add_menu"
+remove-menu = "pawdf.array_pdf:remove_menu"
+print-array = "pawdf.array_pdf:main"
 
 [tool.ruff]
 line-length = 120
