@@ -1,4 +1,3 @@
-from .array_pdf.array_p import convert_many, main
+from .array_pdf import array_pdfs, add_menu, remove_menu
 
-__all__ = ['convert_many', 'main']
-
+__all__ = ['array_pdfs', 'add_menu', 'remove_menu']

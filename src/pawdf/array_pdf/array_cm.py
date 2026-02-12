@@ -3,7 +3,7 @@ from pathlib import Path
 
 from context_menu import menus
 
-from .array_p import convert_many
+from .array_p import array_pdfs
 
 MENU_NAME = 'Array and Print PDF'
 EXE_PATH = r"R:\paul_r\array_p.exe"
@@ -15,7 +15,7 @@ def process_file(filenames, params):
     for filename in filenames:
         try:
             print(f'Processing {filename}')
-            convert_many(Path(filename), print_files=True)
+            array_pdfs(Path(filename), print_files=True)
             print(f'Processed {filename}')
         except Exception as e:
             print('ERROR :', e)

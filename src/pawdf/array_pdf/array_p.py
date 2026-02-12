@@ -1,5 +1,4 @@
 import os
-from argparse import ArgumentParser
 from pathlib import Path
 
 from pypdf import PaperSize, PdfReader, PdfWriter, Transformation
@@ -8,41 +7,12 @@ from pypdf.papersizes import Dimensions
 ADDED_MARGIN = 0.2
 
 
-def create_parser():
-    parser = ArgumentParser(description='Array A6 PDFS on A4.')
-    parser.add_argument('--input_path', '-i', required=True, type=Path, help='A6 PDF input path.')
-    parser.add_argument(
-        '--output_dir',
-        '-o',
-        type=Path,
-        help='Output dir. Defaults to input/arrayed'
-    )
-    parser.add_argument('--print_files', action='store_true', help='Print the output.')
-    return parser
-
-
-def main(args=None):
-    parser = create_parser()
-    args = parser.parse_args(args)
-
-    input_path = args.input_path.resolve()
-    if not input_path.exists():
-        raise ValueError(f'{input_path=} does not exist')
-    print(f'{input_path=}')
-
-    output_dir = args.output_dir.resolve() if args.output_dir else None
-    if output_dir and not output_dir.exists():
-        output_dir.mkdir(parents=True)
-
-    convert_many(input_path, output_dir=output_dir, print_files=args.print_files)
-
-
-def convert_many(*input_files: Path, output_dir: Path = None, print_files=False):
+def array_pdfs(*input_files: Path, output_dir: Path = None, print_files=False, suffix: str = '_on_a4'):
     input_files = list(input_files)
     output_dir = output_dir or input_files[0].parent / 'arrayed'
     output_dir.mkdir(exist_ok=True)
     for file in input_files:
-        output_file = output_dir / f'{file.stem}_on_a4.pdf'
+        output_file = output_dir / f'{file.stem}{suffix}.pdf'
         print(f'Processing {file.name} into {output_file}...')
         on_a4(file, output_file)
         if print_files:
@@ -92,8 +62,7 @@ def on_a4(
         writer.write(out_pdf_file)
 
 
-def get_translations(in_size: Dimensions, out_size: Dimensions) -> tuple[
-    Transformation, Transformation]:
+def get_translations(in_size: Dimensions, out_size: Dimensions) -> tuple[Transformation, Transformation]:
     x_left, x_right, y = get_translation_dims(in_size, out_size)
     return (Transformation().translate(x_left, y),
             Transformation().translate(x_right, y))
@@ -106,7 +75,3 @@ def get_translation_dims(in_size: Dimensions, out_size: Dimensions) -> tuple[flo
     translate_y = (out_size.width - in_size.height) / 2
 
     return translate_x_left, translate_x_right, translate_y
-
-
-if __name__ == '__main__':
-    main()

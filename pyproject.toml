@@ -19,9 +19,9 @@ cmenu = ["context-menu"]
 
 
 [project.scripts]
-add-menu = "pdf_tools.array_pdf.array_cm:add_menu"
-remove-menu = "pdf_tools.array_pdf.array_cm:remove_menu"
-print-array = "pdf_tools.array_pdf:main"
+add-menu = "pawdf.array_pdf.array_cm:add_menu"
+remove-menu = "pawdf.array_pdf.array_cm:remove_menu"
+print-array = "pawdf.array_pdf.array_pdf_cli:main"
 
 [tool.ruff]
 line-length = 120
