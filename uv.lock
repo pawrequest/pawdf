@@ -13,23 +13,18 @@ wheels = [
 
 [[package]]
 name = "pawdf"
-version = "0.1.0"
+version = "0.1.2"
 source = { editable = "." }
 dependencies = [
-    { name = "pypdf" },
-]
-
-[package.optional-dependencies]
-cmenu = [
     { name = "context-menu" },
+    { name = "pypdf" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "context-menu", marker = "extra == 'cmenu'" },
+    { name = "context-menu" },
     { name = "pypdf" },
 ]
-provides-extras = ["cmenu"]
 
 [[package]]
 name = "pypdf"
